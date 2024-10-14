@@ -15,5 +15,3 @@ Queries:
   Fox(COLOR,appearance,ATTITUDE)?
   gOAT(POSTERITY,DIET)?
   gOAT(POSTERITY,'cans')?
-  
-

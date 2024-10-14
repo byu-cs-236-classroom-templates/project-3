@@ -27,4 +27,3 @@ DeaUoo(A,B,'b',D,E,F,G)?
 DeaWoo(A,B,'a',D,E,F,Applestrudle)?
 DeaWoo(A,B,'a',D,E,F,G)?
 DeaWoo('a','a','a','a','a','a','b')?
- 

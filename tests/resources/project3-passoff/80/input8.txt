@@ -47,4 +47,3 @@ Queries:
    marriedTo('Ned',X)?
    childOf('Anna',X)?
    childOf(Y,'Dan')?
- 

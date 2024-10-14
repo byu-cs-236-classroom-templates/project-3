@@ -15,5 +15,3 @@ name(s,s,s,'1')?
 name('2',t,s,'3')?
 name(p,p,q,r)?
 name(p,p,'1',q)?
-
-
