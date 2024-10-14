@@ -46,5 +46,3 @@ Queries:
    cp(C,Q)?
    cdh(C,D,H)?
    cr(C,R)?
-
- 
