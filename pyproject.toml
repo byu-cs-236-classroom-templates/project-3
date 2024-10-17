@@ -9,6 +9,8 @@ version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+  "sortedcontainers",
+  "tabulate",
 ]
 
 [project.scripts]
@@ -16,9 +18,11 @@ project3 = "project3.project3:project3cli"
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=8.2.0",
+  "pytest>=8.3.1",
   "mypy",
   "pre-commit",
+  "types-tabulate",
+
 ]
 
 classroom = [

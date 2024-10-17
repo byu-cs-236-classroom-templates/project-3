@@ -36,7 +36,8 @@ repos:
     rev: 'v1.11.2'  # Use the sha / tag you want to point at
     hooks:
     -   id: mypy
-        args: ["--strict", "--follow-imports=silent", "--ignore-missing-imports"]
+        args: ["--strict", "--follow-imports=silent"]
+        additional_dependencies: [types-tabulate]
         exclude: ^(test)
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
