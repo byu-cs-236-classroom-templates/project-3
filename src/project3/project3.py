@@ -1,6 +1,7 @@
 from sys import argv
 from typing import Iterator
 
+from project3.interpreter import Interpreter
 from project3.datalogprogram import DatalogProgram
 from project3.lexer import lexer
 from project3.parser import parse, UnexpectedTokenException
@@ -11,8 +12,11 @@ def project3(input_string: str) -> str:
     token_iterator: Iterator[Token] = lexer(input_string)
     try:
         datalog_program: DatalogProgram = parse(token_iterator)
-        print(str(datalog_program))
-        raise NotImplementedError
+        interpreter: Interpreter = Interpreter(datalog_program)
+        interpreter.eval_schemes()
+        interpreter.eval_facts()
+        answer = [str(i) for i in interpreter.eval_queries()]
+        return "\n".join(answer)
     except UnexpectedTokenException as e:
         return "Failure!\n  " + str(e.token)
 

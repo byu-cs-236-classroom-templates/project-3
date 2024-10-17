@@ -64,7 +64,7 @@ def test_bucket_80(input_file, expected_file):
 )
 def test_bucket_100(input_file, expected_file):
     # given
-    test_dir = _TEST_ROOT_DIR + "80"
+    test_dir = _TEST_ROOT_DIR + "100"
     input, expected = _get_inputs(
         os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
     )
