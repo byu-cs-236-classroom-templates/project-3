@@ -5,6 +5,7 @@ from project3.interpreter import Interpreter
 from project3.datalogprogram import DatalogProgram
 from project3.lexer import lexer
 from project3.parser import parse, UnexpectedTokenException
+from project3.reporter import query_report
 from project3.token import Token
 
 
@@ -15,8 +16,8 @@ def project3(input_string: str) -> str:
         interpreter: Interpreter = Interpreter(datalog_program)
         interpreter.eval_schemes()
         interpreter.eval_facts()
-        answer = [str(i) for i in interpreter.eval_queries()]
-        return "\n".join(answer)
+        answer = "\n".join([query_report(i, j) for i, j in interpreter.eval_queries()])
+        return answer
     except UnexpectedTokenException as e:
         return "Failure!\n  " + str(e.token)
 

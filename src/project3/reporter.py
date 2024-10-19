@@ -12,39 +12,20 @@ def _is_only_strings(predicate: Predicate) -> bool:
     )
 
 
-def _rtuple_to_str(header: Relation.rtuple, r: Relation.rtuple) -> str:
+def _tuple_to_str(header: Relation.RelationTuple, r: Relation.RelationTuple) -> str:
     assert len(header) == len(r)
     entries = [f"{i[0]}={i[1]}" for i in zip(header, r)]
     return ", ".join(entries)
 
 
-class QueryReporter:
-    __slots__ = ["query", "answer"]
+def query_report(query: Predicate, answer: Relation) -> str:
+    tuples: list[Relation.RelationTuple] = sorted(answer.set_of_tuples)
+    if len(tuples) == 0:
+        return f"{query}? No"
 
-    def __init__(self, query: Predicate, answer: Relation) -> None:
-        self.query = query
-        self.answer = answer
+    if _is_only_strings(query):
+        return f"{query}? Yes({len(tuples)})"
 
-    def __repr__(self) -> str:
-        return f"QueryReporter(query={self.query!r}, answer={self.answer!r})"
-
-    def __str__(self) -> str:
-        if len(self.answer.rtuples) == 0:
-            return f"{self.query}? No"
-
-        if _is_only_strings(self.query):
-            return f"{self.query}? Yes({len(self.answer.rtuples)})"
-
-        entries = [
-            _rtuple_to_str(self.answer.header, row) for row in self.answer.rtuples
-        ]
-        entries_str = "\n  ".join(entries)
-        return f"{self.query}? Yes({len(self.answer.rtuples)})\n  {entries_str}"
-
-
-class RuleReporter:
-    pass
-
-
-class RuleOptimizedReporter:
-    pass
+    entries = [_tuple_to_str(answer.header, row) for row in tuples]
+    entries_str = "\n  ".join(entries)
+    return f"{query}? Yes({len(tuples)})\n  {entries_str}"
