@@ -1,3 +1,5 @@
+"""Project 3 query interpreter for Datalog programs."""
+
 from sys import argv
 from typing import Iterator
 
@@ -5,18 +7,30 @@ from project3.interpreter import Interpreter
 from project3.datalogprogram import DatalogProgram
 from project3.lexer import lexer
 from project3.parser import parse, UnexpectedTokenException
+from project3.reporter import query_report
 from project3.token import Token
 
 
 def project3(input_string: str) -> str:
+    """Interpret queries in the Datalog program input.
+
+    The function creates the lexer and parser to turn the input string into
+    a `DatalogProgram` instance. It then uses the interpreter to get the
+    answers to each query in the Datalog program. The answers are formatted for output
+    matching with an appropriate reporter interface.
+
+    Returns:
+        answer (str): The string representing the answers for each query in the
+        given Datalog program or a parse failure.
+    """
     token_iterator: Iterator[Token] = lexer(input_string)
     try:
         datalog_program: DatalogProgram = parse(token_iterator)
         interpreter: Interpreter = Interpreter(datalog_program)
         interpreter.eval_schemes()
         interpreter.eval_facts()
-        answer = [str(i) for i in interpreter.eval_queries()]
-        return "\n".join(answer)
+        answer = "\n".join([query_report(i, j) for i, j in interpreter.eval_queries()])
+        return answer
     except UnexpectedTokenException as e:
         return "Failure!\n  " + str(e.token)
 
@@ -25,7 +39,7 @@ def project3cli() -> None:
     """Answer queries in a Datalog program
 
     `project3cli` is only called from the command line in the integrated terminal.
-    Prints the results of each query in the Datalog program to the terminal.
+    This function prints the results of each query in the Datalog program to the terminal.
 
     Args:
         argv (list[str]): Generated from the command line and needs to name the input file.
