@@ -1,3 +1,9 @@
+"""Interpreter for Datalog programs.
+
+Provides an interpreter interface for interpreting Datalog
+programs using relational algebra.
+"""
+
 from typing import Iterator
 
 from project3.datalogprogram import DatalogProgram, Predicate, Rule
@@ -5,15 +11,38 @@ from project3.relation import Relation
 
 
 class Interpreter:
+    """Interpreter class for Datalog.
+
+    Defines the interface, and a place for the implementation, for interpreting
+    Datalog programs. The interpreter must be implemented using relational algebra,
+    so new attributes must be added to track the named relations in the Datalog
+    program during the lifetime of the interpreter.
+
+    Attributes:
+        datalog (DatalogProgram): The Datalog program to interpret.
+    """
+
     __slots__ = ["datalog"]
 
     def __init__(self, datalog: DatalogProgram) -> None:
         self.datalog = datalog
 
     def eval_schemes(self) -> None:
+        """Evaluate the schemes in the Datalog program.
+
+        Create, and store in the interpreter, a relation for each scheme
+        in the Datalog program. The _name_ of the scheme must be stored
+        separate from the relation since the `Relation` type has no name
+        attribute.
+        """
         raise NotImplementedError
 
     def eval_facts(self) -> None:
+        """Evaluate the facts in the Datalog program.
+
+        Create, and store in the appropriate relation belonging to the
+        interpreter, a tuple for each fact in the Datalog program.
+        """
         raise NotImplementedError
 
     def eval_queries(self) -> Iterator[tuple[Predicate, Relation]]:
@@ -21,21 +50,24 @@ class Interpreter:
 
         For each query in the Datalog program, evaluate the query to get a
         resulting relation that is the answer to the query, and then yield
-        the resulting (query, relation) pair.
+        the resulting `(query, relation)` tuple.
 
         Returns:
-            out: An iterator to a tuple where the first element is the predicate
-                for the query and the second element is the relation for the answer.
+            out (tuple[Predicate, Relation]): An iterator to a tuple where the
+            first element is the predicate for the query and the second element
+            is the relation for the answer.
         """
         raise NotImplementedError
 
     def eval_rules(self) -> Iterator[tuple[Relation, Rule, Relation]]:
-        """Yield each before relation, rule, and after relation from evaluation.
+        """Yield each _before_ relation, rule, and _after_ relation from evaluation.
 
-        For each rule in the Datalog program, yield the relation associated with
-        the rule before evaluating the rule one time, the rule itself, and then
+        For each rule in the Datalog program, yield as a tuple the relation associated
+        with the rule before evaluating the rule one time, the rule itself, and then
         the resulting relation after evaluating the rule one time. This process
         should repeat until the associated relations stop changing.
+        All the generated facts should be stored in the appropriate relation
+        in the interpreter.
 
         For example, given `rule_a` for relation `A`, `rule_b` for
         relation `B`, and that it takes three evaluations to see no change, then
@@ -53,14 +85,15 @@ class Interpreter:
         `B_2 == B_3`.
 
         Returns:
-            out: An iterator to a tuple where the first element is the relation before rule
-                evaluation, the second element is the rule associated with the relation, and
-                the third element is the relation resulting from the rule evaluation.
+            out (Iterator[tuple[Relation, Rule, Relation]]): An iterator to a tuple where the
+                first element is the relation before rule evaluation, the second element is
+                the rule associated with the relation, and the third element is the relation
+                resulting from the rule evaluation.
         """
         raise NotImplementedError
 
     def eval_rules_optimized(self) -> Iterator[tuple[Relation, Rule, Relation]]:
-        """Yield each before relation, rule, and after relation from optimized evaluation.
+        """Yield each _before_ relation, rule, and _after_ relation from optimized evaluation.
 
         This function is the same as the `eval_rules` function only it groups rules by strongly
         connected components (SCC) in the dependency graph from the rules in the Datalog
@@ -84,9 +117,10 @@ class Interpreter:
         and stops after two iterations when `C_1 == C_2`.
 
         Returns:
-            out: An iterator to a tuple where the first element is the relation before rule
-                evaluation, the second element is the rule associated with the relation, and
-                the third element is the relation resulting from the rule evaluation.
+            out (Iterator[tuple[Relation, Rule, Relation]]): An iterator to a tuple where the
+                first element is the relation before rule evaluation, the second element is the
+                rule associated with the relation, and the third element is the relation resulting
+                from the rule evaluation.
         """
         raise NotImplementedError
 
