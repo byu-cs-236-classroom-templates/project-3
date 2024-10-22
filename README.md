@@ -118,7 +118,7 @@ Here is the suggested order for Project 3:
 
 ## Pass-off and Submission
 
-**The pass-off test structure has changed.** All the tests are in a single file: `tests/test-passoff.py`. These use custom marks defined in `pytest.ini` to group the tests into buckets. They also now use parameterization to avoid code duplication. Running individual tests is the same using either `pytest` directly or the testing pane in vscode (**recommended**).
+**The pass-off test structure has changed.** All the tests are in a single file: `tests/test-passoff.py`. Running individual tests is the same using either `pytest` directly or the testing pane in vscode (**recommended**).
 
 The minimum standard for this project is **bucket 80**. That means that if all the tests pass in all buckets up to and including bucket 80, then the next project can be started safely.
 

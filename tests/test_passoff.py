@@ -1,5 +1,4 @@
 # type: ignore
-import pytest
 import os
 from project3.project3 import project3 as compute
 
@@ -16,30 +15,9 @@ def _get_inputs(input_file: str, answer_file: str) -> tuple[str, str]:
     return input, answer
 
 
-@pytest.mark.bucket_80
-@pytest.mark.parametrize(
-    argnames="input_file, expected_file",
-    argvalues=[
-        ("input0.txt", "answer0.txt"),
-        ("input1.txt", "answer1.txt"),
-        ("input2.txt", "answer2.txt"),
-        ("input3.txt", "answer3.txt"),
-        ("input4.txt", "answer4.txt"),
-        ("input7.txt", "answer7.txt"),
-        ("input8.txt", "answer8.txt"),
-    ],
-    ids=[
-        "input0",
-        "input1",
-        "input2",
-        "input3",
-        "input4",
-        "input7",
-        "input8",
-    ],
-)
-def test_bucket_80(input_file, expected_file):
+def test_bucket_80_0():
     # given
+    input_file, expected_file = ("input0.txt", "answer0.txt")
     test_dir = _TEST_ROOT_DIR + "80"
     input, expected = _get_inputs(
         os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
@@ -52,18 +30,129 @@ def test_bucket_80(input_file, expected_file):
     assert expected.rstrip() == answer.rstrip()
 
 
-@pytest.mark.bucket_100
-@pytest.mark.parametrize(
-    argnames="input_file, expected_file",
-    argvalues=[
-        ("input5.txt", "answer5.txt"),
-        ("input6.txt", "answer6.txt"),
-        ("input9.txt", "answer9.txt"),
-    ],
-    ids=["input5", "input6", "input9"],
-)
-def test_bucket_100(input_file, expected_file):
+def test_bucket_80_1():
     # given
+    input_file, expected_file = ("input1.txt", "answer1.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_80_2():
+    # given
+    input_file, expected_file = ("input2.txt", "answer2.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_80_3():
+    # given
+    input_file, expected_file = ("input3.txt", "answer3.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_80_4():
+    # given
+    input_file, expected_file = ("input4.txt", "answer4.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_80_7():
+    # given
+    input_file, expected_file = ("input7.txt", "answer7.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_80_8():
+    # given
+    input_file, expected_file = ("input8.txt", "answer8.txt")
+    test_dir = _TEST_ROOT_DIR + "80"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_100_5():
+    # given
+    input_file, expected_file = ("input5.txt", "answer5.txt")
+    test_dir = _TEST_ROOT_DIR + "100"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_100_6():
+    # given
+    input_file, expected_file = ("input6.txt", "answer6.txt")
+    test_dir = _TEST_ROOT_DIR + "100"
+    input, expected = _get_inputs(
+        os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
+    )
+
+    # when
+    answer = compute(input)
+
+    # then
+    assert expected.rstrip() == answer.rstrip()
+
+
+def test_bucket_100_9():
+    # given
+    input_file, expected_file = ("input9.txt", "answer9.txt")
     test_dir = _TEST_ROOT_DIR + "100"
     input, expected = _get_inputs(
         os.path.join(test_dir, input_file), os.path.join(test_dir, expected_file)
