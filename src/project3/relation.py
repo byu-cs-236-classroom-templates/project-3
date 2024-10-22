@@ -9,30 +9,23 @@ class IncompatibleOperandError(Exception):
 
 
 class Relation:
-    __slots__ = ["name", "header", "set_of_tuples"]
+    __slots__ = ["header", "set_of_tuples"]
 
     RelationTuple = tuple[str, ...]
 
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, Relation):
             return False
-        return (
-            self.name == other.name
-            and self.header == other.header
-            and self.set_of_tuples == other.set_of_tuples
-        )
+        return self.header == other.header and self.set_of_tuples == other.set_of_tuples
 
-    def __init__(
-        self, name: str, header: RelationTuple, set_of_tuples: set[RelationTuple]
-    ):
-        self.name = name
-        self.header = header
+    def __init__(self, header: list[str], set_of_tuples: set[RelationTuple]):
+        self.header = list(header)
         self.set_of_tuples: set[Relation.RelationTuple] = set()
         for i in set_of_tuples:
             self.add_tuple(i)
 
     def __repr__(self) -> str:
-        return f"Relation(name={self.name!r}, header={self.header!r}, set_of_tuples={self.set_of_tuples!r})"
+        return f"Relation(header={self.header!r}, set_of_tuples={self.set_of_tuples!r})"
 
     def __str__(self) -> str:
         sorted_tuples = sorted(self.set_of_tuples)
@@ -44,6 +37,10 @@ class Relation:
             raise IncompatibleOperandError(
                 f"Error: {r} is not compatible with header {self.header} in Relation.add_tuple"
             )
+        if not isinstance(r, tuple) or any(not isinstance(i, str) for i in r):
+            raise IncompatibleOperandError(
+                f"Error: {r} is not type compatible with Relation.RelationTuple in Relation.add_tuple"
+            )
         self.set_of_tuples.add(r)
 
     def difference(self, right_operand: "Relation") -> "Relation":
@@ -52,7 +49,6 @@ class Relation:
                 f"Error: headers {self.header} and {right_operand.header} are not compatible in Relation.difference"
             )
         r = Relation(
-            self.name,
             self.header,
             self.set_of_tuples.difference(right_operand.set_of_tuples),
         )

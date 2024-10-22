@@ -7,28 +7,28 @@ from project3.reporter import query_report
 
 input_literals_no = (
     Predicate("SK", [Parameter.string("'c'"), Parameter.string("'c'")]),
-    Relation("SK", ("X", "Y"), set()),
+    Relation(("X", "Y"), set()),
 )
 expect_literals_no = "SK('c','c')? No"
 
 
 input_literals_yes = (
     Predicate("SK", [Parameter.string("'b'"), Parameter.string("'c'")]),
-    Relation("SK", ("X", "Y"), set([("'b'", "'c'")])),
+    Relation(("X", "Y"), set([("'b'", "'c'")])),
 )
 expect_literals_yes = "SK('b','c')? Yes(1)"
 
 
 input_mixed_no = (
     Predicate("SK", [Parameter.id("A"), Parameter.string("'c'")]),
-    Relation("SK", ("A",), set()),
+    Relation(("A",), set()),
 )
 expect_mixed_no = "SK(A,'c')? No"
 
 
 input_mixed_yes = (
     Predicate("SK", [Parameter.id("A"), Parameter.string("'c'")]),
-    Relation("SK", ("A",), set([("'a'",), ("'b'",)])),
+    Relation(("A",), set([("'a'",), ("'b'",)])),
 )
 expect_mixed_yes = """SK(A,'c')? Yes(2)
   A='a'
@@ -36,7 +36,7 @@ expect_mixed_yes = """SK(A,'c')? Yes(2)
 
 input_id_yes = (
     Predicate("SK", [Parameter.id("A"), Parameter.string("B")]),
-    Relation("SK", ("A", "B"), set([("'a'", "'b'"), ("'a'", "'c'"), ("'b'", "'c'")])),
+    Relation(("A", "B"), set([("'a'", "'b'"), ("'a'", "'c'"), ("'b'", "'c'")])),
 )
 expect_id_yes = """SK(A,B)? Yes(3)
   A='a', B='b'
