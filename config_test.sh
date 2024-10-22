@@ -5,8 +5,5 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-# printf "[pytest]\npython_files = *$1*" > pytest.ini
-# pip install ".[classroom]"
-
-# Add the restriction to the specified bucket
-echo "addopts = -m $1" >> pytest.ini
+printf "[pytest]\npython_files = *test_passoff*\naddopts = -k $1" > pytest.ini
+pip install ".[classroom]"
