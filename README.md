@@ -1,4 +1,4 @@
-# Project 2
+# Project 3
 
 
 This project uses the `lexer` and `parser` functions from Project 1 and Project 2 to get an instance of a `DatalogProgram` that must then be interpreted to answer its queries. Project 3 must
@@ -49,7 +49,7 @@ The above should result in a `project3` executable that is run from the command 
 
 ### Copy Files
 
-Copy the below files from your solution to Project 2 into the `src/project2/` folder:
+Copy the below files from your solution to Project 2 into the `src/project3/` folder:
 
   * `datalogprogram.py`
   * `fsm.py`
@@ -126,7 +126,7 @@ The Project 3 submission follows that of the other projects:
 
   * Commit your solution on the master branch -- be sure to add any new files!
   * Push the commit to GitHub -- that should trigger the auto-grader
-  * Goto [learningsuite.byu.edu](https://learningsuite.byu.edu) at _Assignments_ &rarr; _Projects_ &rarr; _Project 2_ to submit your GitHub ID and Project 2 URL for grading.
+  * Goto [learningsuite.byu.edu](https://learningsuite.byu.edu) at _Assignments_ &rarr; _Projects_ &rarr; _Project 3_ to submit your GitHub ID and Project 3 URL for grading.
   * Goto the Project 3 URL, find the green checkmark or red x, and click it to confirm the auto-grader score matches the pass-off results from your system.
 
 ### Branches
