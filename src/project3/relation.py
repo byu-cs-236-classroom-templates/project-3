@@ -1,7 +1,8 @@
 """Relation type for interpreting Datalog."""
 
-from tabulate import tabulate
 from typing import Any
+
+from tabulate import tabulate
 
 
 class IncompatibleOperandError(Exception):
