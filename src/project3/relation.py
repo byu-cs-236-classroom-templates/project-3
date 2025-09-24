@@ -29,8 +29,6 @@ class Relation:
         set_of_tuples (set[RelationTuple]): The tuples belonging to the relation.
     """
 
-    __slots__ = ["header", "set_of_tuples"]
-
     def __eq__(self, other: Any) -> bool:
         if not isinstance(other, Relation):
             return False
