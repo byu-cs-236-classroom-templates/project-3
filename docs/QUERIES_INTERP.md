@@ -52,6 +52,7 @@ Extend the `Interpreter` class in the starter code to include attributes to impl
   - `intersection` (easy)
   - `project` (hard)
   - `rename` (super easy)
+  - `reorder` (hard)
   - `select_eq_col` (moderate)
   - `select_eq_lit` (moderate)
   - `union` (easy).

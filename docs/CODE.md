@@ -45,6 +45,7 @@ Some of the `Relation` class is already implemented. The attributes are complete
   - `intersection` (easy),
   - `project` (hard),
   - `rename` (super easy),
+  - `reorder` (hard),
   - `select_eq_col` (moderate),
   - `select_eq_lit` (moderate), and
   - `union` (easy).

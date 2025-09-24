@@ -155,6 +155,22 @@ class Relation:
         """
         raise NotImplementedError
 
+    def reorder(self, to: list[str]) -> "Relation":
+        """The reorder of this relation to a new order on the header.
+
+        The length of `to` must match the length of the header. And the names in
+        `to` must match the names in the header albeit in the same or different order.
+        The tuples in the final relation are the tuples in the current relation
+        reordered to match the order in `to`. The header for the final relation should
+        also match `to`.
+
+        Returns:
+            r (Relation): A new relation that is this relation with the header and tuples reordered to `to`.
+        Raises:
+            error (IncompatibleOperandError): Error if `to` has more entries than what is in this relation's header or has an name that is not in this relation's header.
+        """
+        raise NotImplementedError
+
     def select_eq_col(self, src: str, col: str) -> "Relation":
         """The select of this relation where the `src` entry equals the `col` entry.
 

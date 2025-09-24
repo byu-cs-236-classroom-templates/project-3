@@ -77,6 +77,7 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `intersection` (easy),
     - `project` (hard),
     - `rename` (super easy),
+    - `reorder` (hard)
     - `select_eq_col` (moderate),
     - `select_eq_lit` (moderate), and
     - `union` (easy).
@@ -84,6 +85,7 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `intersection` (easy),
     - `project` (hard),
     - `rename` (super easy),
+    - `reorder` (hard)
     - `select_eq_col` (moderate),
     - `select_eq_lit` (moderate), and
     - `union` (easy).
