@@ -73,14 +73,14 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
 1. The project must be completed individually -- there is no group work.
 1. Project pass-off is on GitHub. You will commit your final solution to the `master` branch of your local repository and then push that commit to GitHub. Multiple commits, and pushes, are allowed. A push triggers a GitHub action that is the auto-grader for pass-off. The TAs look at both the result of the auto-grader on GitHub and your code to determine your final score. Projects that use iteration instead of tail recursion will not be accepted.
 1. You must pass all integration tests up to, and including, `tests/test_passoff_80.py` to move on to the next project. Bucket 80 is the minimum functionality to complete the course.
-1. You must **_"do the math"_** to write positive and negative tests in `tests/test_relation.py` for the following functions in the `Relation` class in `src/project3/relation.py`. AI may be used to generate the code for the tests once you **_"do the math"_** for the for the inputs and outputs and write a few examples for the AI to follow using your inputs and outputs. See [AI Policy for Project 3](#ai-policy-for-project-3) for details.
-    - `intersection` (easy),
-    - `project` (hard),
-    - `rename` (super easy),
-    - `reorder` (hard)
-    - `select_eq_col` (moderate),
-    - `select_eq_lit` (moderate), and
-    - `union` (easy).
+1. You must **_"do the math"_** to write positive and negative tests in `tests/test_relation.py` for the following functions in the `Relation` class in `src/project3/relation.py`. AI may be used to generate the code for the tests once you **_"do the math"_** for the inputs and outputs and write a few examples for the AI to follow using your inputs and outputs. See [AI Policy for Project 3](#ai-policy-for-project-3) for details.
+    - `intersection`,
+    - `project`,
+    - `rename`,
+    - `reorder`,
+    - `select_eq_col`,
+    - `select_eq_lit`, and
+    - `union`.
 1. You must implement the following functions in the `Relation` class in `src/project3/relation.py`:
     - `intersection` (easy),
     - `project` (hard),
@@ -90,10 +90,11 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `select_eq_lit` (moderate), and
     - `union` (easy).
 1. You must add to the `Interpreter` class in `src/project3/interpreter.py` attributes to represent, or implement, a relational database. A relational database is just a named collection of relations (see [QUERIES_INTERP.md](docs/QUERIES_INTERP.md))
-1. You must interpret a Datalog program with relational algebra by implementing the following in the `Interpreter` class in `src/project3/interpreter.py`. The other functions will be implemented is later projects. See [QUERIES_INTERP.md](docs/QUERIES_INTERP.md) for details on each of the required to implement function as well as the docstrings defined for those functions. You are encouraged to **_"do the math"_** and write positive for the required to implement functions.
+1. You must interpret a Datalog program with relational algebra by implementing the following in the `Interpreter` class in `src/project3/interpreter.py`. The other functions will be implemented in later projects. See [QUERIES_INTERP.md](docs/QUERIES_INTERP.md) for details on each of the required to implement function as well as the docstrings defined for those functions.
     - `eval_schemes`
     - `eval_facts`
     - `eval_queries`
+1. You must do [input partition](#input-partitioning) to write tests for `eval_queries`. After you **do the math** to find input for each of the partitions, then you may use AI to generate the code for the actual tests. We suggest that you use a parameterized test.
 1. Your code must not report any issues with the following code quality tool run in the integrated `vscode` terminal from the root of the project directory: `pre-commit run --all-files`. This tool includes _type checking_ so your solution requires type annotations.
 
 Consider using a branch as you work on your submission so that you can `commit` your work from time to time. Once everything is working, and the auto-grader tests are passing, then you can `merge` your work into your master branch and push it to your GitHub repository. Ask your favorite AI for help learning how to use Git branches for feature development.
@@ -102,9 +103,10 @@ Consider using a branch as you work on your submission so that you can `commit` 
 
 Project 3 code is very algorithmic and specific to interpreting Datalog. It does not include repeated code with similar structure that AI can learn, adapt, and repeat. As such, you are expected to write all the implementation code in the `Relation` class and `Interpreter` class without AI assist.
 
-AI may be used to help generate code for the positive and negative tests for the functions in the `Relation` class with the exception that you must **_"Do the math"_** to figure out the input and expected output for each of the tests and only use AI to generate the code to implement the tests. We recommend that after you **_"Do the math"_**, you write the code for the negative and positive test for one of the operators. Then use that code, with your already computed input and output values for the other tests, to prompt the AI to generate the code for the remaining tests.
+AI may be used to help generate code for tests **after you "Do the math" to figure out the input and expected output**. In this application, you figure out the computation with the math, and the AI then generates the test code for your given input and output relations.
 
-All the tests should appear in `tests/test_relation.py`.
+We recommend that the test code for `eval_queries` be parameterized since the test for each input is the same while there should be least one test for each [input partition](#input-partitioning).
+
 
 ## Unit Tests
 
@@ -115,6 +117,21 @@ See the [AI Policy for Project 3](#ai-policy-for-project-3) for instructions on 
 ## Integration Tests (pass-off)
 
 **The pass-off test structure has changed.** All the primary tests are in a single file: `tests/test-passoff.py`. Running individual tests is the same using either `pytest` directly or the testing pane in vscode (**recommended**). As before, the `xx` on each bucket denotes the available points for passing the tests in that bucket. The value of each test in each bucket is uniform: _points-for-bucket/number-of-tests-in-bucket_. Bucket 80 is the minimum requirement to pass the course.
+
+## Input Partitioning
+
+Input partitioning is a generalization of _negative_ and _positive_ tests. The idea is to figure out the different types of output that can be generated, and then partition the input space according to those outputs.
+
+For example, consider a helper function $\mathtt{eval\_query}: \mathtt{ParameterList} \times \mathtt{Relation} \rightarrow \mathtt{Relation}$ that is called by `Iterpreter::eval_queries` for each query in the Datalog program. Here, if the Datalog program had the query `f(x,y)?`, then `eval_queries` would call `eval_query([x, y], self.db[f])` to interpret the query: the first parameter is the parameter list from the input predicate and the second parameter is the relation for `f` from the database. The return from the function is the relation resulting from the query.
+
+[QUERIES_INTERP.md](docs/QUERIES_INTERP.md) defines different types of output that can be generated by a query:
+  * If `eval_query` returns an empty relation, then the output is **No**.
+  * If the query is `f('1')` and `eval_query` returns a non-empty relation, then the output is **Yes**.
+  * If the query is `f(x)` and `eval_query` returns a non-empty relation, then the output is **Yes(n)** where $n$ is the number of tuples in the relation.
+
+These different types of output caused by `eval_query` can be used to partition the input space. Here we have identified three partitions which means that we want to find an input in each partition of the input space that belongs to each type of identified output. We would then have three tests to generate each of the three possible outputs.
+
+But can we further partition the input space and would that be helpful for covering the behavior of our interpreter? For example, what about queries that change the number of attributes in the resulting relation? Should we create a partition for such inputs?
 
 ## Code Quality
 
