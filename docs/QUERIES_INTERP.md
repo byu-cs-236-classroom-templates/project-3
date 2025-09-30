@@ -132,9 +132,9 @@ The project operation changes the number and order of columns in a relation. The
 
 The parameter to the project function could be a list of the positions of the columns that should be included in the result.
 
-### Why does the project need to be able to change the order of the columns?
+### Why is a reorder operator needed to change the order of the columns?
 
-The project function will to be able to change the order of the columns in a relation to support evaluating rules in the next project. Changing the order of the columns is not needed for evaluating the queries in this project.
+The reorder function will need to be able to change the order of the columns in a relation to support evaluating rules in the next project. Changing the order of the columns is not needed for evaluating the queries in this project.
 
 ### How does the rename operation work?
 
@@ -147,6 +147,8 @@ Replacing the entire list of attributes is easier and avoids issues with name co
 ### What should select, project, and rename return?
 
 These functions should create a new relation that holds the header and tuples resulting from the operation. They should return this new relation. They should not modify the original relation.
+
+### What should reorder, union, intersection, and difference return?
 
 ### When a query has two variables with different names, do the values given to the variables need to be different?
 

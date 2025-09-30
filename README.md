@@ -1,6 +1,6 @@
 # Project 3
 
-This project uses the `lexer` and `parser` functions from Project 1 and Project 2 to get an instance of a `DatalogProgram` that must then be interpreted to answer its queries. Project 3 must
+This project uses the instance of the `DatalogProgram` created by the `lexer` and `parser` functions from Project 1 and Project 2. This project has you write an intepreter that will take the `DatalogProgram` instance, represent the `facts` as relations in a relational database, and answer queries when there are no `rules` in the original Datalog Program. Project 3 must
   1. Create a relation for each named scheme in the Datalog program.
   1. Add each fact in the Datalog program to the appropriate relation.
   1. Evaluate each query in the Datalog program and return the answers to each one.
@@ -8,14 +8,14 @@ This project uses the `lexer` and `parser` functions from Project 1 and Project 
 
 **There is no rule evaluation for project 3.** Anything related to evaluating rules, including the natural join of two relations, is **not a part of project 3.**
 
-The interpreter **must be implemented with relational algebra.** No exceptions. Specifically, project, rename, and select along with union, intersection, and difference as appropriate.
+The interpreter **must be implemented with relational algebra.** No exceptions will be allowed. Specifically, you must implement the relational operators `project`, `rename`, and `select`.  This is a good opportunity to implement and test the relational operators `reorder`, `union`, `intersection`, and `difference` since (s) these operators are used in Project 4 and (b) this project is easier than Project 4.
 
 **Summary of Documentation**
 
 - [README.md](README.md): describes project logistics
-- [QUERIES_INTERP.md](docs/QUERIES_INTERP.md): describes how to interpret queries in Datalog program
+- [QUERIES_INTERP.md](docs/QUERIES_INTERP.md): describes how to use relational operators to interpret queries in Datalog
 - [CODE.md](docs/CODE.md): describes the starter code
-- [Relational Algebra Operations Examples](ddocs/Relational_algebra_operations_example.ipynb) (Jupyter Notebook)
+- [Relational Algebra Operations Examples](docs/Relational_algebra.ipynb) (Jupyter Notebook)
 - Lecture notes in [learningsuite.byu.edu](https://learningsuite.byu.edu) and specifically the slides in the lecture _Relational Operators and Project 3_.
 
 **You are strongly encouraged to review the above documentation _before_ proceeding further**.
@@ -32,7 +32,7 @@ The interpreter **must be implemented with relational algebra.** No exceptions. 
 
 ## Developer Setup
 
-The `vscode` extensions for developing Project 3 are already installed as part of Project 0. You should not need to install any new extensions. You do need to set up the project locally on your machine. The below steps outline the process that is similar to what you did in Project 2 ony with additional files to copy over.
+The `vscode` extensions for developing Project 3 are already installed as part of Project 0. You should not need to install any new extensions. You do need to set up the project locally on your machine. The below steps outline the process that is similar to what you did in Project 2, emphasizing additional files to copy over.
 
 1. Clone the repository to your machine. Accepting the Project 3 assignment on GitHub classroom creates a repository for your submission. You need to clone that repository to your machine. Copy the URL generated after accepting the assignment and in a terminal on your machine in a sensible location. From an integrated terminal, type `git clone \<URL\>` where `\<URL\>` is the one you copied. Or open a new vscode window, select _Clone Git Repository_, and paste the URL you copied. If you followed the URL to GitHub, then you can recopy the URL using the "<> Code ▼" button.
 1. Create and activate a virtual environment in the project directory.  Revisit Project 0 for a reminder on how to create the virtual environment. There is also a _cheat sheet_ at [learningsuite.byu.edu](https://learningsuite.byu.edu) _Content_ &rarr; _Projects_ &rarr; _Projects Cheat Sheet_.
@@ -73,7 +73,7 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
 1. The project must be completed individually -- there is no group work.
 1. Project pass-off is on GitHub. You will commit your final solution to the `master` branch of your local repository and then push that commit to GitHub. Multiple commits, and pushes, are allowed. A push triggers a GitHub action that is the auto-grader for pass-off. The TAs look at both the result of the auto-grader on GitHub and your code to determine your final score. Projects that use iteration instead of tail recursion will not be accepted.
 1. You must pass all integration tests up to, and including, `tests/test_passoff_80.py` to move on to the next project. Bucket 80 is the minimum functionality to complete the course.
-1. You must **_"do the math"_** to write positive and negative tests in `tests/test_relation.py` for the following functions in the `Relation` class in `src/project3/relation.py`. AI may be used to generate the code for the tests once you **_"do the math"_** for the inputs and outputs and write a few examples for the AI to follow using your inputs and outputs. See [AI Policy for Project 3](#ai-policy-for-project-3) for details.
+1. You must **_"do the math"_** to write positive and negative tests in `tests/test_relation.py` for the following functions in the `Relation` class in `src/project3/relation.py`. AI may be used to generate the code for the tests once you **_"do the math"_** for the inputs and outputs and write a few examples for the AI to follow using your inputs and outputs. Consider using parameterized tests and try to design your tests using input partitioning using the pattern shown in the Jupyter notebook tutorial. See [AI Policy for Project 3](#ai-policy-for-project-3) for details.
     - `intersection`,
     - `project`,
     - `rename`,
@@ -94,8 +94,8 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `eval_schemes`
     - `eval_facts`
     - `eval_queries`
-1. You must do [input partition](#input-partitioning) to write tests for `eval_queries`. After you **do the math** to find input for each of the partitions, then you may use AI to generate the code for the actual tests. We suggest that you use a parameterized test.
-1. Your code must not report any issues with the following code quality tool run in the integrated `vscode` terminal from the root of the project directory: `pre-commit run --all-files`. This tool includes _type checking_ so your solution requires type annotations.
+1. You must use [input partitioning](#input-partitioning) to write tests for `eval_queries` using the pattern demonstrated in the Jupyter notebook tutorial. We won't be looking for a perfect partitioning of the input when we grade your tests, but we will be looking to see if you made an effort to generate tests that had good test coverage. After you **do the math** to find inputs for each of the partitions, then you may use AI to generate the code for the actual tests. We suggest that you use a parameterized test.
+1. Your code must not report any issues with the following code quality tool run in the integrated `vscode` terminal from the root of the project directory: `pre-commit run --all-files`. This tool includes _type checking_, which means that type annotations are required in your code.
 
 Consider using a branch as you work on your submission so that you can `commit` your work from time to time. Once everything is working, and the auto-grader tests are passing, then you can `merge` your work into your master branch and push it to your GitHub repository. Ask your favorite AI for help learning how to use Git branches for feature development.
 
@@ -120,7 +120,7 @@ See the [AI Policy for Project 3](#ai-policy-for-project-3) for instructions on 
 
 ## Input Partitioning
 
-Input partitioning is a generalization of _negative_ and _positive_ tests. The idea is to figure out the different types of output that can be generated, and then partition the input space according to those outputs.
+Input partitioning, which is illustrated in the Jupter notebook tutorial, is a generalization of _negative_ and _positive_ tests. The idea is to figure out the different types of output that can be generated, and then partition the input space according to those outputs.
 
 For example, consider a helper function $\mathtt{eval\_query}: \mathtt{ParameterList} \times \mathtt{Relation} \rightarrow \mathtt{Relation}$ that is called by `Iterpreter::eval_queries` for each query in the Datalog program. Here, if the Datalog program had the query `f(x,y)?`, then `eval_queries` would call `eval_query([x, y], self.db[f])` to interpret the query: the first parameter is the parameter list from the input predicate and the second parameter is the relation for `f` from the database. The return from the function is the relation resulting from the query.
 
@@ -131,7 +131,7 @@ For example, consider a helper function $\mathtt{eval\_query}: \mathtt{Parameter
 
 These different types of output caused by `eval_query` can be used to partition the input space. Here we have identified three partitions which means that we want to find an input in each partition of the input space that belongs to each type of identified output. We would then have three tests to generate each of the three possible outputs.
 
-But can we further partition the input space and would that be helpful for covering the behavior of our interpreter? For example, what about queries that change the number of attributes in the resulting relation? Should we create a partition for such inputs?
+You can further partition the input space since that will be helpful for covering the behavior of our interpreter. For example, should you create an input partition for queries that change the number of attributes in the resulting relation? As another example, should you create an input partition for queries that have a mix of STRING and ID types in the parameter list? 
 
 ## Code Quality
 
@@ -177,11 +177,15 @@ Here is the suggested order for Project 3:
     1. Write code to pass the negative test.
     1. Write a positive test that fails.
     1. Write code to pass the positive test.
+    1. Make a good faith effort to partition the input, do the math on the resulting partition, and write parameterized tests using the input partition
+    1. Modify your code to pass the parameterized tests 
 
 1. For each required function in `Interpreter`:
 
     1. Write a positive test that fails.
     1. Write code to pass the positive test.
+    1. Make a good faith effort to partition the input, do the math on the resulting partition, and write parameterized tests using the input partition
+    1. Modify your code to pass the parameterized tests 
 
 1. Run the pass-off tests -- debug as needed.
 

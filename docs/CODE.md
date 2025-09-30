@@ -1,6 +1,6 @@
 Here are the relevant files for the project:
 
-  * `.devcontainer`: container definition for those using docker with vscode
+  * `.devcontainer`: container definition for those using docker with vscode (this doesn't apply to most of you)
   * `.github`: workflow definitions
   * `README.md`: overview and directions
   * `config_test.sh`: support for auto-grading -- **please do not edit**
@@ -9,6 +9,7 @@ Here are the relevant files for the project:
   * `src`: folder for the package source files
   * `tests`: folder for the package test files
   * `.gitignore`: files patterns that git should ignore
+  * `debug_project3.py`: file that allows you to run the interpreter on an input of your choosing so that you can use the VS Code debugger
 
 ## Reminder
 
