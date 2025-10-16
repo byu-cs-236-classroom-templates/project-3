@@ -68,6 +68,8 @@ The `vscode` extensions for developing Project 3 are already installed as part o
     * `parser.py`
 The `token.py` file is unchanged here and should not be copied over. None of test files from Project 2 should be copied over either.
 
+**You need to fix all the imports in the copied file to replace `project2` with `project3` in the import path. You also need to make these changes in all the docstring tests. We recommend the use of the search feature in `vscode`, the magnifying class in the sidebar, to search for `project2` in all files.**
+
 ## Project Requirements
 
 1. The project must be completed individually -- there is no group work.
