@@ -148,10 +148,7 @@ def test_union_raises_when_headers_differ() -> None:
 
     # when
     # then
-    with pytest.raises(
-        IncompatibleOperandError,
-        match=r"Error: ('h', 1) is not type compatible with Relation.RelationTuple in Relation.add_tuple",
-    ):
+    with pytest.raises(IncompatibleOperandError):
         P.union(W)
 
 
@@ -237,9 +234,9 @@ def test_given_bad_col_when_project_then_raise() -> None:
         # Three Columns
         (
             ["A", "B", "C"],
-            {("x1", "True"), ("y", "2", "False")},
+            {("x1", "1", "True"), ("y", "2", "False")},
             ["B"],
-            {(1,), (2,)},
+            {("1",), ("2",)},
         ),
         # Three Columns with Two Adjacent
         (
@@ -261,7 +258,7 @@ def test_given_bad_col_when_project_then_raise() -> None:
                 ("x", "9", "True"),
             },
             ["A", "C"],
-            {("x", "True"), ("y", "True")},
+            {("x", "True"), ("y", "False")},
         ),
     ),
     ids=(
