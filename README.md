@@ -143,15 +143,81 @@ Pre-commit must run on all the files and report no errors.
 
 The minimum standard for this project is **bucket 80**. That means that if all the tests pass in all buckets up to and including bucket 80, then the next project can be started safely. You can run each bucket from the testing pane or with `pytest` on the command line. Passing everything up to and including `test_passoff_80.py` is the minimum requirement to move on to the next project.
 
-Submit Project 2 for grading by doing the following:
+Submit Project 3 for grading by doing the following:
 
-  * Commit your solution on the master branch
-  * Push the commit to GitHub -- that should trigger the auto-grader
-  * Goto [learningsuite.byu.edu](https://learningsuite.byu.edu) at _Assignments_ &rarr; _Projects_ &rarr; _Project 2_ to submit the following:
-    1. Your GitHub ID and Project 2 URL for grading.
-    1. A short paragraph outlining (a) how you prompted the AI to generate any code (if you used it) and (b) how you determined the quality and correctness of that code.
-    1. A screen shot showing no issues with `pre-commit run --all-files`.
-  * Confirm on the GitHub Actions pane that the pass-off tests passed, or alternatively, goto the Project 1 URL, find the green checkmark or red x, and click it to confirm the auto-grader score matches the pass-off results from your system.
+* Commit your solution on the `master` branch.
+* Submit your project to the auto-grader using **one** of the methods below. Using `gh student submit` is the preferred method.
+* Go to [learningsuite.byu.edu](https://learningsuite.byu.edu) at *Assignments* → *Projects* → *Project 2* to submit the following:
+
+  1. Your GitHub ID and Project 2 URL for grading.
+  2. A short paragraph outlining (a) how you prompted the AI to generate any code (if you used it) and (b) how you determined the quality and correctness of that code.
+  3. A screen shot showing no issues with `pre-commit run --all-files`.
+* Confirm on [classroom50.org](https://classroom50.org/login) that the pass-off tests passed.
+
+A normal `git push` does **not** run the Project 2 auto-grader. You must explicitly submit the project using one of the following methods.
+
+### Submit with `gh student submit` (preferred)
+
+Install the [GitHub CLI (`gh`)](https://cli.github.com/) if you do not already have it installed.
+
+Then install the Classroom50 student extension:
+
+```bash
+gh extension install foundation50/gh-student
+```
+
+From your Project 2 repository, submit your project with:
+
+```bash
+gh student submit
+```
+
+The command creates and pushes a new submission commit and triggers the auto-grader.
+
+**If you make changes after submitting and want to submit again, first run:**
+
+```bash
+git pull
+```
+
+This is important because `gh student submit` created a new commit on GitHub that is not yet in your local repository. After pulling that commit, make and commit your changes normally and run:
+
+```bash
+gh student submit
+```
+
+again.
+
+### Submit using `git`
+
+You can alternatively submit without installing the Classroom50 `gh` extension. First commit and push the version you want graded:
+
+```bash
+git add .
+git commit -m "Submit Project 2"
+git push
+```
+
+Then create a `submit/*` tag pointing to that commit and push the tag:
+
+```bash
+git tag submit/1
+git push origin submit/1
+```
+
+Pushing the `submit/*` tag triggers the auto-grader.
+
+Each submission must use a **new tag name**. For example, to submit a later revision:
+
+```bash
+git add .
+git commit -m "Resubmit Project 2"
+git push
+git tag submit/2
+git push origin submit/2
+```
+
+Continue with `submit/3`, `submit/4`, etc. for additional submissions.
 
 ### Paragraph on AI
 
