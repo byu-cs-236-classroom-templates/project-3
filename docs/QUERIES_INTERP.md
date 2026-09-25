@@ -52,7 +52,7 @@ Extend the `Interpreter` class in the starter code to include attributes to impl
   - `intersection` (easy)
   - `project` (hard)
   - `rename` (super easy)
-  - `reorder` (hard)
+  - `transpose` (hard)
   - `select_eq_col` (moderate)
   - `select_eq_lit` (moderate)
   - `union` (easy).
@@ -132,9 +132,9 @@ The project operation changes the number and order of columns in a relation. The
 
 The parameter to the project function could be a list of the positions of the columns that should be included in the result.
 
-### Why is a reorder operator needed to change the order of the columns?
+### Why is a transpose operator needed to change the order of the columns?
 
-The reorder function will need to be able to change the order of the columns in a relation to support evaluating rules in the next project. Changing the order of the columns is not needed for evaluating the queries in this project.
+The transpose function will need to be able to change the order of the columns in a relation to support evaluating rules in the next project. Changing the order of the columns is not needed for evaluating the queries in this project.
 
 ### How does the rename operation work?
 
@@ -148,7 +148,7 @@ Replacing the entire list of attributes is easier and avoids issues with name co
 
 These functions should create a new relation that holds the header and tuples resulting from the operation. They should return this new relation. They should not modify the original relation.
 
-### What should reorder, union, intersection, and difference return?
+### What should transpose, union, intersection, and difference return?
 
 ### When a query has two variables with different names, do the values given to the variables need to be different?
 

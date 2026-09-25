@@ -8,7 +8,7 @@ This project uses the instance of the `DatalogProgram` created by the `lexer` an
 
 **There is no rule evaluation for project 3.** Anything related to evaluating rules, including the natural join of two relations, is **not a part of project 3.**
 
-The interpreter **must be implemented with relational algebra.** No exceptions will be allowed. Specifically, you must implement the relational operators `project`, `rename`, and `select`.  This is a good opportunity to implement and test the relational operators `reorder`, `union`, `intersection`, and `difference` since (s) these operators are used in Project 4 and (b) this project is easier than Project 4.
+The interpreter **must be implemented with relational algebra.** No exceptions will be allowed. Specifically, you must implement the relational operators `project`, `rename`, and `select`.  This is a good opportunity to implement and test the relational operators `transpose`, `union`, `intersection`, and `difference` since (s) these operators are used in Project 4 and (b) this project is easier than Project 4.
 
 **Summary of Documentation**
 
@@ -79,7 +79,7 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `intersection`,
     - `project`,
     - `rename`,
-    - `reorder`,
+    - `transpose`,
     - `select_eq_col`,
     - `select_eq_lit`, and
     - `union`.
@@ -87,7 +87,7 @@ The `token.py` file is unchanged here and should not be copied over. None of tes
     - `intersection` (easy),
     - `project` (hard),
     - `rename` (super easy),
-    - `reorder` (hard)
+    - `transpose` (hard)
     - `select_eq_col` (moderate),
     - `select_eq_lit` (moderate), and
     - `union` (easy).
