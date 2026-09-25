@@ -15,7 +15,7 @@ Examples:
     (EOF,"",3)
 """
 
-from typing import Iterator
+from collections.abc import Iterator
 
 from project3.fsm import Colon, Eof, FiniteStateMachine, WhiteSpace
 from project3.token import Token, TokenType

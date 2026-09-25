@@ -1,7 +1,5 @@
 """Relation type for interpreting Datalog."""
 
-from typing import Any
-
 from tabulate import tabulate
 
 
@@ -29,7 +27,7 @@ class Relation:
         set_of_tuples (set[RelationTuple]): The tuples belonging to the relation.
     """
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Relation):
             return False
         return self.header == other.header and self.set_of_tuples == other.set_of_tuples

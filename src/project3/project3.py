@@ -1,7 +1,7 @@
 """Project 3 query interpreter for Datalog programs."""
 
+from collections.abc import Iterator
 from sys import argv
-from typing import Iterator
 
 from project3.datalogprogram import DatalogProgram
 from project3.interpreter import Interpreter

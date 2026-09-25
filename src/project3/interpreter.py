@@ -4,7 +4,7 @@ Provides an interpreter interface for interpreting Datalog
 programs using relational algebra.
 """
 
-from typing import Iterator
+from collections.abc import Iterator
 
 from project3.datalogprogram import DatalogProgram, Predicate, Rule
 from project3.relation import Relation
