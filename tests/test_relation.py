@@ -21,7 +21,7 @@ def test_given_empty_relation_when_add_tuple_then_tuple_in_relation():
 def test_given_relation_when_str_then_match_expected():
     # given
     header = ("a", "b", "c")
-    set_of_tuples = set([("'1'", "'2'", "'3'"), ("'1'", "'3'", "'5'")])
+    set_of_tuples = {("'1'", "'2'", "'3'"), ("'1'", "'3'", "'5'")}
     relation = Relation(header, set_of_tuples)
 
     expected = """+-----+-----+-----+
@@ -67,7 +67,7 @@ def test_given_relation_when_add_tuple_then_added():
 def test_given_mismatched_header_and_tuple_when_construct_then_exception():
     # given
     header = ("a", "b", "c")
-    set_of_tuples = set([("1", "2")])
+    set_of_tuples = {("1", "2")}
 
     # when
     with pytest.raises(IncompatibleOperandError) as exception:
@@ -83,7 +83,7 @@ def test_given_mismatched_header_and_tuple_when_construct_then_exception():
 def test_given_set_that_is_not_over_tuples_when_construct_then_exception():
     # given
     header = "a"
-    set_of_tuples = set(["1"])
+    set_of_tuples = {"1"}
 
     # when
     with pytest.raises(IncompatibleOperandError) as exception:
@@ -99,7 +99,7 @@ def test_given_set_that_is_not_over_tuples_when_construct_then_exception():
 def test_given_set_that_is_tuples_but_not_str_when_construct_then_exception():
     # given
     header = ("a", "b")
-    set_of_tuples = set([("1", 2)])
+    set_of_tuples = {("1", 2)}
 
     # when
     with pytest.raises(IncompatibleOperandError) as exception:
@@ -130,9 +130,9 @@ def test_given_mismatched_relations_when_difference_then_exception():
 
 def test_given_matched_relations_when_difference_then_difference():
     # given
-    left = Relation(("a", "b", "c"), set([("1", "2", "3"), ("2", "4", "6")]))
-    right = Relation(("a", "b", "c"), set([("2", "4", "6")]))
-    expected = Relation(("a", "b", "c"), set([("1", "2", "3")]))
+    left = Relation(("a", "b", "c"), {("1", "2", "3"), ("2", "4", "6")})
+    right = Relation(("a", "b", "c"), {("2", "4", "6")})
+    expected = Relation(("a", "b", "c"), {("1", "2", "3")})
 
     # when
     answer = left.difference(right)
