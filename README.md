@@ -147,14 +147,14 @@ Submit Project 3 for grading by doing the following:
 
 * Commit your solution on the `master` branch.
 * Submit your project to the auto-grader using **one** of the methods below. Using `gh student submit` is the preferred method.
-* Go to [learningsuite.byu.edu](https://learningsuite.byu.edu) at *Assignments* → *Projects* → *Project 2* to submit the following:
+* Go to [learningsuite.byu.edu](https://learningsuite.byu.edu) at *Assignments* → *Projects* → *Project 3* to submit the following:
 
-  1. Your GitHub ID and Project 2 URL for grading.
+  1. Your GitHub ID and Project 3 URL for grading.
   2. A short paragraph outlining (a) how you prompted the AI to generate any code (if you used it) and (b) how you determined the quality and correctness of that code.
   3. A screen shot showing no issues with `pre-commit run --all-files`.
 * Confirm on [classroom50.org](https://classroom50.org/login) that the pass-off tests passed.
 
-A normal `git push` does **not** run the Project 2 auto-grader. You must explicitly submit the project using one of the following methods.
+A normal `git push` does **not** run the Project 3 auto-grader. You must explicitly submit the project using one of the following methods.
 
 ### Submit with `gh student submit` (preferred)
 
@@ -166,7 +166,7 @@ Then install the Classroom50 student extension:
 gh extension install foundation50/gh-student
 ```
 
-From your Project 2 repository, submit your project with:
+From your Project 3 repository, submit your project with:
 
 ```bash
 gh student submit
@@ -194,7 +194,7 @@ You can alternatively submit without installing the Classroom50 `gh` extension. 
 
 ```bash
 git add .
-git commit -m "Submit Project 2"
+git commit -m "Submit Project 3"
 git push
 ```
 
@@ -211,7 +211,7 @@ Each submission must use a **new tag name**. For example, to submit a later revi
 
 ```bash
 git add .
-git commit -m "Resubmit Project 2"
+git commit -m "Resubmit Project 3"
 git push
 git tag submit/2
 git push origin submit/2
